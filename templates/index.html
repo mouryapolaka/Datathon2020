@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <form action="recommend_skills" method="POST">
+            <label for="skill">Enter skill: </label>
+            <input type="text" id="skill" name="skill">
+            <input id="get_skills" type="submit" value="Submit">
+        </form>
+
+        <script>
+
+            function updateSkills()
+            {
+                var getData = $.get('/recommend_skills');
+                
+                getData.done(function(skills){
+                    var data = skills.results
+                    document.write(data)
+                })
+            }
+
+            $("#get_skills").on('click',updateSkills)
+
+        </script>
+    </body>
+</html>
