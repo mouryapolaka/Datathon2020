@@ -18,41 +18,87 @@ skill_corr_df = pd.read_csv('data/corr_matrix.csv', index_col = 'skill_name')
 skills_df = pd.read_csv('data/skills.csv')
 skills_array = [{'label':i, 'value':i} for i in list(skills_df['skill_name'])]
 
-app.layout = html.Div([
+#roles_skill dataset
+roles_skills_df = pd.read_csv('data/roles_skills.csv')
+roles_array = [{'label':i, 'value':i} for i in list(roles_skills_df['Title'].unique())]
 
-    html.H1("Skills Recommender Dashboard", style={'text-align': 'center'}),
+#HTML Layout
+app.layout = html.Div([
+    html.H1("Dashboard", style={'text-align': 'center'}),
     dcc.Dropdown(id="select_skill",
                  options=skills_array,
-                 multi=False,
-                 value="c++",
+                 multi=True,
+                 value=['c++','python'],
                  style={'width': "50%"}
                  ),
-
-    html.Div(id='output_container', children=[]),
+    html.Div(id='skill_recommendation_output_container', children=[]),
     html.Br(),
+    dcc.Graph(id='skills_recommender_plot', figure={}),
 
-    dcc.Graph(id='skills_recommender_plot', figure={})
+
+    dcc.Dropdown(id="select_role",
+                 options=roles_array,
+                 multi=False,
+                 value=None,
+                 style={'width': "50%"}
+                 ),
+    html.Div(id='top_soft_skills_output_container', children=[]),
+    html.Br(),
+    dcc.Graph(id='top_soft_skills_plot', figure={})
 ])
+
+#callback for skills_recommender_plot based on skills
 @app.callback(
-    [Output(component_id='output_container', component_property='children'),
+    [Output(component_id='skill_recommendation_output_container', component_property='children'),
      Output(component_id='skills_recommender_plot', component_property='figure')],
     [Input(component_id='select_skill', component_property='value')]
 )
-def update_skill_bar_graph(selected_option):
-    print(selected_option)
-    print(type(selected_option))
+def update_recommender_skill_chart(selected_skills):  
 
-    container = "Selected skill: {}".format(selected_option)
-    
-    recommended_skills = skill_corr_df[selected_option]
-    recommended_skills = recommended_skills.sort_values(ascending=False)
-    recommended_skills.dropna(inplace=True)
+    container = None
 
-    df = pd.DataFrame({'Skill' : [], 'Correlation' : []})
-    df['Skill'] = [skill for skill in list(recommended_skills.keys())]
-    df['Correlation'] = [corr for corr in list(recommended_skills)]
+    df = pd.DataFrame({'Skill' : [], 'Correlation' : [], 'CurrentSkill' : []})
 
-    fig = px.bar(df[1:5], x='Skill', y="Correlation", title=f"Recommended skills for {selected_option}", color='Correlation')
+    skills = []
+    correlations = []
+    current_skills = []
+
+    for current_skill in selected_skills:
+        x = skill_corr_df[current_skill]
+        x = x.sort_values(ascending=False)
+        
+        for skill in list(x.keys()):
+            skills.append(skill)
+
+        for corr in list(x):
+            correlations.append(corr)
+        
+        for cur_skill in x:
+            current_skills.append(current_skill)
+
+    df = pd.DataFrame({'Skill' : skills, 'Correlation' : correlations, 'CurrentSkill' : current_skills})
+
+    fig = px.bar(df, x='CurrentSkill', y="Correlation", title=f"Recommended skills for {selected_skills}", color='Skill',barmode="group")
+
+    return container, fig
+
+#callback for top_soft_skills_plot based on role
+@app.callback(
+    [Output(component_id='top_soft_skills_output_container', component_property='children'),
+     Output(component_id='top_soft_skills_plot', component_property='figure')],
+    [Input(component_id='select_role', component_property='value')]
+)
+def update_top_skills_chart(selected_role):
+
+    container = None
+
+    temp_df = roles_skills_df[roles_skills_df['Title'] == selected_role].sort_values('Data Value', axis=0, ascending=False, inplace=False, kind='quicksort')
+
+    df = pd.DataFrame({'Skill' : [], 'Rating' : []})
+    df['Skill'] = [skill.capitalize() for skill in list(temp_df['Element Name'])]
+    df['Rating'] = [rating for rating in list(temp_df['Data Value'])]
+
+    fig = px.bar(df, x='Skill', y="Rating", title=f"Recommended skills for {selected_role}", color='Rating')
 
     return container, fig
 
