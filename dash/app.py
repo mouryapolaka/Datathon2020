@@ -27,10 +27,12 @@ roles_array = [{'label':i, 'value':i} for i in list(roles_skills_df['Title'].uni
 seek_df = pd.read_csv('data/seek_df.csv')
 seek_df = seek_df[seek_df.geo != 'NZ']
 cities_array = [{'label': i, 'value': i} for i in list(seek_df['city'].unique())]
+categories_array = [{'label': i, 'value': i} for i in list(seek_df['category'].unique())]
 
 #HTML Layout
 app.layout = html.Div([
     html.H1("Dashboard", style={'text-align': 'center'}),
+    html.Label('Select Skill'),
     dcc.Dropdown(id="select_skill",
                  options=skills_array,
                  multi=True,
@@ -41,7 +43,7 @@ app.layout = html.Div([
     html.Br(),
     dcc.Graph(id='skills_recommender_plot', figure={}),
 
-
+    html.Label('Select Role'),
     dcc.Dropdown(id="select_role",
                  options=roles_array,
                  multi=False,
@@ -52,16 +54,35 @@ app.layout = html.Div([
     html.Br(),
     dcc.Graph(id='top_soft_skills_plot', figure={}),
 
-
+    html.Label('Select City'),
     dcc.Dropdown(id="select_city",
                  options=cities_array,
                  multi=False,
-                 value='Port Hedland, Karratha & Pilbara',
+                 value='Brisbane',
                  style={'width': "50%"}
                  ),
     html.Div(id='city_category_output_container', children=[]),
     html.Br(),
-    dcc.Graph(id='city_category_plot', figure={})
+    dcc.Graph(id='city_category_plot', figure={}),
+
+    html.Label('Select City'),
+    dcc.Dropdown(id="select_city_pie",
+                 options=cities_array,
+                 multi=False,
+                 value='Brisbane',
+                 style={'width': "50%"}
+                 ),
+    html.Label('Select Category'),
+    dcc.Dropdown(id="select_category_pie",
+                 options=categories_array,
+                 multi=False,
+                 value='Healthcare & Medical',
+                 style={'width': "50%"}
+                 ),
+    html.Div(id='city_cat_jobtype_container', children=[]),
+    html.Br(),
+    dcc.Graph(id='city_cat_jobtype_plot', figure={}),
+
 ])
 
 #callback for skills_recommender_plot based on skills
@@ -119,7 +140,7 @@ def update_top_skills_chart(selected_role):
 
     return container, fig
 
-#callback for city_category_plot based on skills
+#callback for city_category_plot
 @app.callback(
     [Output(component_id='city_category_output_container', component_property='children'),
      Output(component_id='city_category_plot', component_property='figure')],
@@ -134,6 +155,21 @@ def update_city_cat_plot(selected_city):
 
     fig = go.Figure([go.Bar(x=category_list, y=category_frequency)])
     fig.update_layout(title=f"Job market in {selected_city}")
+
+    return container, fig
+
+#callback for city_cat_jobtype_plot
+@app.callback(
+    [Output(component_id='city_cat_jobtype_container', component_property='children'),
+     Output(component_id='city_cat_jobtype_plot', component_property='figure')],
+    [Input(component_id='select_city_pie', component_property='value'),
+    Input(component_id='select_category_pie', component_property='value')]
+)
+def update_jobtype_plot(selected_city, selected_category):
+
+    container = None
+
+    fig = px.pie(seek_df.loc[(seek_df['city'] == selected_city) & (seek_df['category'] == selected_category)], names='job_type', title= f'Job analysis of {selected_category} in {selected_city}')
 
     return container, fig
 
