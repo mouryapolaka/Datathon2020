@@ -28,7 +28,7 @@ app.layout = html.Div([
     dcc.Dropdown(id="select_skill",
                  options=skills_array,
                  multi=True,
-                 value=['c++','python'],
+                 value=['PYTHON','ANALYSIS'],
                  style={'width': "50%"}
                  ),
     html.Div(id='skill_recommendation_output_container', children=[]),
@@ -78,7 +78,7 @@ def update_recommender_skill_chart(selected_skills):
 
     df = pd.DataFrame({'Skill' : skills, 'Correlation' : correlations, 'CurrentSkill' : current_skills})
 
-    fig = px.bar(df, x='CurrentSkill', y="Correlation", title=f"Recommended skills for {selected_skills}", color='Skill',barmode="group")
+    fig = px.bar(df[1:11], x='CurrentSkill', y="Correlation", title=f"Recommended skills for {selected_skills}", color='Skill',barmode="group")
 
     return container, fig
 
