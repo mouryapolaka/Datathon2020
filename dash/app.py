@@ -1,5 +1,6 @@
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 
 import dash
 import dash_core_components as dcc
@@ -22,13 +23,18 @@ skills_array = [{'label':i, 'value':i} for i in list(skills_df['skill_name'])]
 roles_skills_df = pd.read_csv('data/roles_skills.csv')
 roles_array = [{'label':i, 'value':i} for i in list(roles_skills_df['Title'].unique())]
 
+#seek dataset
+seek_df = pd.read_csv('data/seek_df.csv')
+seek_df = seek_df[seek_df.geo != 'NZ']
+cities_array = [{'label': i, 'value': i} for i in list(seek_df['city'].unique())]
+
 #HTML Layout
 app.layout = html.Div([
     html.H1("Dashboard", style={'text-align': 'center'}),
     dcc.Dropdown(id="select_skill",
                  options=skills_array,
                  multi=True,
-                 value=['PYTHON','ANALYSIS'],
+                 value=['PYTHON'],
                  style={'width': "50%"}
                  ),
     html.Div(id='skill_recommendation_output_container', children=[]),
@@ -44,7 +50,18 @@ app.layout = html.Div([
                  ),
     html.Div(id='top_soft_skills_output_container', children=[]),
     html.Br(),
-    dcc.Graph(id='top_soft_skills_plot', figure={})
+    dcc.Graph(id='top_soft_skills_plot', figure={}),
+
+
+    dcc.Dropdown(id="select_city",
+                 options=cities_array,
+                 multi=False,
+                 value='Port Hedland, Karratha & Pilbara',
+                 style={'width': "50%"}
+                 ),
+    html.Div(id='city_category_output_container', children=[]),
+    html.Br(),
+    dcc.Graph(id='city_category_plot', figure={})
 ])
 
 #callback for skills_recommender_plot based on skills
@@ -99,6 +116,24 @@ def update_top_skills_chart(selected_role):
     df['Rating'] = [rating for rating in list(temp_df['Data Value'])]
 
     fig = px.bar(df, x='Skill', y="Rating", title=f"Recommended skills for {selected_role}", color='Rating')
+
+    return container, fig
+
+#callback for city_category_plot based on skills
+@app.callback(
+    [Output(component_id='city_category_output_container', component_property='children'),
+     Output(component_id='city_category_plot', component_property='figure')],
+    [Input(component_id='select_city', component_property='value')]
+)
+def update_city_cat_plot(selected_city):
+
+    container = None
+
+    category_list = list(seek_df[seek_df['city'] == selected_city].category.unique())
+    category_frequency = list(seek_df[seek_df['city'] == selected_city].category.value_counts())
+
+    fig = go.Figure([go.Bar(x=category_list, y=category_frequency)])
+    fig.update_layout(title=f"Job market in {selected_city}")
 
     return container, fig
 
