@@ -78,26 +78,38 @@ def render_content(tab):
             options=skills_array,
             default_value=['PYTHON'],
             multi=True
-        ), html.Div([html.Div(id='skill_recommendation_output_container', children=[]),
-        html.Br(),
-        dcc.Graph(id='skills_recommender_plot', figure={})])
+        ), html.Div(
+            [
+                html.Div(id='skill_recommendation_output_container', children=[]),
+                html.Br(),
+                dcc.Graph(id='skills_recommender_plot', figure={})
+            ]
+        )
     elif tab == 'tab-2':
         return generate_dropdown(
             label="Select your Desired Role:",
             id="select_role",
             options=roles_array,
-        ), html.Div([html.Div(id='top_soft_skills_output_container', children=[]),
-        html.Br(),
-        dcc.Graph(id='top_soft_skills_plot', figure={}),])
+        ), html.Div(
+            [
+                html.Div(id='top_soft_skills_output_container', children=[]),
+                html.Br(),
+                dcc.Graph(id='top_soft_skills_plot', figure={}),
+            ]
+        )
     elif tab == 'tab-3':
         return generate_dropdown(
             label="Select your City:",
             id="select_city",
             options=cities_array,
             default_value="Brisbane"
-        ), html.Div([html.Div(id='city_category_output_container', children=[]),
-        html.Br(),
-        dcc.Graph(id='city_category_plot', figure={})])
+        ), html.Div(
+            [
+                html.Div(id='city_category_output_container', children=[]),
+                html.Br(),
+                dcc.Graph(id='city_category_plot', figure={})
+            ]
+        )
     elif tab == 'tab-4':
         return html.Div(
             [

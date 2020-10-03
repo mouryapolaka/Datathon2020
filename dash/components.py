@@ -14,13 +14,17 @@ def generate_card(body_contents=[]):
     )
 
 def generate_dropdown(label, id, options, multi=False, default_value=None):
-    return html.Div([html.P(
-            label,
-            className="card-text",
-        ),
-        dcc.Dropdown(id=id,
-            options=options,
-            multi=multi,
-            value=default_value,
-            style={'width': "90%"}
-        )])
+    return html.Div(
+        [
+            html.P(
+                label,
+                className="card-text",
+            ),
+            dcc.Dropdown(id=id,
+                options=options,
+                multi=multi,
+                value=default_value,
+                style={'width': "90%"}
+            )
+        ]
+    )
