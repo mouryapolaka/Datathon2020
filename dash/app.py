@@ -42,7 +42,7 @@ input_card = generate_card(
             dcc.Tab(label='Most Valuable Skills by Role', value='tab-2', style=tab_styling, selected_style=tab_styling),
             dcc.Tab(label='Job Market by City', value='tab-3', style=tab_styling, selected_style=tab_styling),
             dcc.Tab(label='Job Type by City and Category', value='tab-4', style=tab_styling, selected_style=tab_styling),
-        ], style={'font-size': '14px'}),
+        ], style={'font-size': '13.5px'}),
         html.Br(),
         html.Br(),
         html.Div(id='input-area')
@@ -57,7 +57,7 @@ graph_card = generate_card(
 
 #HTML Layout
 app.layout = html.Div([
-    html.H1("Dashboard", style={'text-align': 'center'}),
+    html.H1("Upskill", style={'text-align': 'center'}),
     html.Br(),
     html.Br(),
     dbc.Row(
@@ -81,8 +81,7 @@ def render_content(tab):
             multi=True
         ), html.Div(
             [
-                html.Div(id='skill_recommendation_output_container', children=[]),
-                html.Br(),
+                html.Div(id='skill_recommendation_output_container', children=[], style={"padding": "0px"}),
                 dcc.Graph(id='skills_recommender_plot', figure={})
             ]
         )
@@ -95,7 +94,6 @@ def render_content(tab):
         ), html.Div(
             [
                 html.Div(id='top_soft_skills_output_container', children=[]),
-                html.Br(),
                 dcc.Graph(id='top_soft_skills_plot', figure={}),
             ]
         )
@@ -108,7 +106,6 @@ def render_content(tab):
         ), html.Div(
             [
                 html.Div(id='city_category_output_container', children=[]),
-                html.Br(),
                 dcc.Graph(id='city_category_plot', figure={})
             ]
         )
@@ -120,7 +117,7 @@ def render_content(tab):
                     id="select_city_pie",
                     options=cities_array,
                     default_value="Brisbane"
-                ), 
+                ),
                 html.Br(),
                 html.Br(),
                 generate_dropdown(
@@ -133,7 +130,6 @@ def render_content(tab):
         ), html.Div(
             [
                 html.Div(id='city_cat_jobtype_container', children=[]),
-                html.Br(),
                 dcc.Graph(id='city_cat_jobtype_plot', figure={}),
             ]
         )
@@ -190,6 +186,7 @@ def update_top_skills_chart(selected_role):
     df['Rating'] = [rating for rating in list(temp_df['Data Value'])]
 
     fig = px.bar(df, x='Skill', y="Rating", title=f"Recommended skills for {selected_role}", color='Rating', range_y=[0,5])
+    fig.update_layout(xaxis_tickfont_size=7)
 
     return container, fig
 
@@ -207,7 +204,7 @@ def update_city_cat_plot(selected_city):
     category_frequency = list(seek_df[seek_df['city'] == selected_city].category.value_counts())
 
     fig = go.Figure([go.Bar(x=category_list, y=category_frequency)])
-    fig.update_layout(title=f"Job market in {selected_city}")
+    fig.update_layout(title=f"Job market in {selected_city}", xaxis_tickfont_size=7)
 
     return container, fig
 
