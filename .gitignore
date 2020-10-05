@@ -3,3 +3,5 @@ notebooks/
 data/ipynb_checkpoints
 dash/__pycache__/
 data/.DS_Store
+
+.vscode/*
