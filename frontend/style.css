@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.background {
+    background-color: #212121;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#sidebar {
+    position: absolute;
+    top: 10px;
+    bottom: 10px;
+    left: 10px;
+    width: 60px;
+    z-index: 1;
+    border-radius: 10px;
+    background-image: linear-gradient(#33cccb, #33cccb, #193053);
+    box-shadow: 2px 5px 20px#181818;
+}
+
+svg {
+    width: 70px;
+    height: 70px;
+}
+
+#fullpage {
+    position: absolute !important;
+}
+
+.s2, .s3 {
+    background-color: rgba(18,18,18,0.7);
+}
+
+.landing {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+
+.scroll-up {
+    /*Scroll up Arrow*/
+    
+    position: absolute;
+    top: 30px;
+    text-align: center;
+    cursor: pointer;
+
+    margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	pointer-events: auto;
+}
+
+.scroll-down {
+    /*Scroll down Arrow*/
+    
+    position: absolute;
+    bottom: 30px;
+    text-align: center;
+    cursor: pointer;
+
+    margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	pointer-events: auto;
+}
+
+a.selector {
+    font-size: 21px;
+    font-weight: 500;
+    color: white;
+    padding: 15px 0px 15px 0px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    width: 80%;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+a.selector:hover, a.selector:active {
+    color: #193053;
+}
+
+ /* Modifies Text */
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 96px;
+    font-weight:600;
+    text-align: center;
+    color: #f7f7f7;
+    padding: 25px 0px 25px 0px;
+}
+
+h2 {
+    font-size: 56px;
+    font-weight: 300;
+    color: #f7f7f7;
+    padding: 25px 0px 25px 0px;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+    color: #f7f7f7;
+}
+
+#subheader {
+    font-size: 26px;
+    font-style: italic;
+}
+
+span {
+    background: #f7f7f7 !important;
+}
+
