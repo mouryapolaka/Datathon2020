@@ -77,7 +77,7 @@ def render_content(tab):
             label="Select your Current Skills:",
             id="select_skill",
             options=skills_array,
-            default_value=['PYTHON'],
+            default_value=['PYTHON','AWS','ALGORITHMS','AGILE'],
             multi=True
         ), html.Div(
             [
@@ -144,29 +144,24 @@ def update_recommender_skill_chart(selected_skills):
 
     container = None
 
-    df = pd.DataFrame({'Skill' : [], 'Correlation' : [], 'CurrentSkill' : []})
+    container = None
 
-    skills = []
-    correlations = []
-    current_skills = []
+    df = pd.DataFrame({'Skills' : list(skill_corr_df.keys())})
 
-    for current_skill in selected_skills:
-        x = skill_corr_df[current_skill]
-        x = x.sort_values(ascending=False)
-        
-        for skill in list(x.keys()):
-            skills.append(skill)
+    for i in selected_skills:
+        corr_values = list(skill_corr_df[i])
+        df[i] = corr_values
 
-        for corr in list(x):
-            correlations.append(corr)
-        
-        for cur_skill in x:
-            current_skills.append(current_skill)
+    df["Correlation"] = df[[i for i in selected_skills]].sum(axis=1)
 
-    df = pd.DataFrame({'Skill' : skills, 'Correlation' : correlations, 'CurrentSkill' : current_skills})
+    df = df.sort_values(by ='Correlation', ascending=False)
 
-    fig = px.bar(df[1:11], x='CurrentSkill', y="Correlation", title=f"Recommended skills", color='Skill',barmode="group", range_y=[0,1])
+    for i in selected_skills:
+        df = df[df.Skills != i]
 
+    fig = px.bar(df[len(selected_skills):len(selected_skills)+10], x='Skills', y="Correlation", title=f"Recommended skills for {selected_skills}", range_y=[0,1])
+
+    return container, fig
     return container, fig
 
 #callback for top_soft_skills_plot based on role
