@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Skills</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <!-- Main CSS -->
+        <link rel="stylesheet" type="text/css" href="css/layout.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body>
+        <div id="particles-js" class="background">
+            <div class="sidebar">
+                <li>
+                    <ul><a href="index.html"><div class="icon icon-home"><img src="assets/imgs/home.svg" alt="Home"><p>Home</p></div></a></ul>
+                    <br>
+                    <ul><a href="skills.html"><div class="icon icon-skills"><img src="assets/imgs/nodes.svg" alt="Skills"><p>Skills</p></div></a></ul>
+                    <ul><a href="domains.html"><div class="icon icon-domains"><img src="assets/imgs/briefcase.svg" alt="Domains"><p>Domains</p></div></a></ul>
+                </li>
+            </div>
+            <div class="content">
+                <div class="prompt">
+                    <p id="skills-prompt">What skills do you currently have?</p>
+                    <form autocomplete="off" action="recommend_skills" method="POST">
+                        <div class="autocomplete">
+                          <input id="mySkill" type="text" name="mySkill" placeholder="Enter a skill">
+                        </div>
+                        <input id="get_skills" type="submit" value="Submit">
+                    </form>
+                </div>
+                <div class="dashboard">
+                    <h3>Dashboard</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Special title treatment</h5>
+                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Special title treatment</h5>
+                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Particles JS -->
+        <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+        
+        <script>
+            particlesJS.load('particles-js', 'assets/particles.json', function() {
+                console.log('callback - particles.js config loaded');
+            });
+        </script>
+
+    </body>
+</html>
