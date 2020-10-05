@@ -7,10 +7,10 @@
     position: fixed;
     height: 100%;
     width: 100%;
-    z-index: -1;
 }
 
 .sidebar {
+    /* border: 2px solid red; */
     position: absolute;
     z-index: 1;
     width: 70px;
@@ -20,8 +20,11 @@
 }
 
 .content {
+    /* border: 2px solid blue; */
     position: absolute;
     margin-left: 80px;
+    right: 0;
+    left: 0;
     height: 100%;
     overflow: auto;
 }
@@ -31,6 +34,7 @@
 }
 
 .prompt {
+    /* border: 2px solid green; */
     width: 960px;
     max-width: 97%;
 
@@ -48,6 +52,7 @@
 }
 
 .dashboard {
+    /* border: 2px solid yellow; */
     width: 97%;
 
     display: block;
