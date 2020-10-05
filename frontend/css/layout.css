@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.background {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+}
+
+.sidebar {
+    position: absolute;
+    z-index: 1;
+    width: 70px;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+}
+
+.content {
+    position: absolute;
+    margin-left: 80px;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar-shift {
+    margin-left: 80px;
+}
+
+.prompt {
+    width: 960px;
+    max-width: 97%;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+
+    /* TODO: Margin shifts when dashboard is generated.  */
+    margin-top: 20%;
+    margin-bottom: 10%;
+}
+
+.prompt > p{
+    height: 80px;
+}
+
+.dashboard {
+    width: 97%;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+    padding: 30px 30px 30px 30px;
+    margin-bottom: 3%;
+    overflow: scroll;
+}
+
+.card {
+    margin: 20px 10px 20px 10px;
+    min-height: 400px;
+}
