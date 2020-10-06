@@ -12,7 +12,6 @@ def index():
 
 @app.route('/get_json', methods=['GET','POST'])
 def get_json():
-
     if request.method == 'POST':
         skills = request.form.getlist('skills')
     else:
