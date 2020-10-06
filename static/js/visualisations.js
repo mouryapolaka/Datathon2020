@@ -37,7 +37,6 @@ function createSkillsRecommendation() {
 }
 
 function updateSkillsRecommendation() {
-    console.log("Ye");
     $.ajax({
         type: "POST",
         url: "/get_json",
