@@ -39,6 +39,9 @@
         <script>
             $(document).ready(function(){
                 createSkillsRecommendation();
+                createRoleSkills();
+                createJobType();
+                createCategoryType();
                 $(".mul-select").select2({
                         placeholder: "select skills",
                         tags: true,
@@ -98,9 +101,14 @@
                         <div class="col-sm-6">
                           <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title">Special title treatment</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <h5 class="card-title">Job type</h5>
+                                <form id="jobtype_form" name="jobtype_form" target="hiddenFrame">
+                                    <label>Location</label>
+                                    <input type="text" id = "location" name="location"><br>
+                                    <label>Category</label>
+                                    <input type="text" id = "category" name="category"><br>
+                                    <input id = "update_jobtype" type="submit" value="Submit">
+                                </form>
                             </div>
                           </div>
                           <div class="card">
