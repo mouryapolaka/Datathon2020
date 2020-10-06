@@ -1,108 +1,88 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-        <!-- Google Fonts -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-        <!-- Bootstrap core CSS -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Material Design Bootstrap -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
-        <!-- JQuery -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Multilpe Select</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
-    
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Upskill</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+        <!-- Full Page CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.css" integrity="sha512-8M8By+q+SldLyFJbybaHoAPD6g07xyOcscIOQEypDzBS+sTde5d6mlK2ANIZPnSyxZUqJfCNuaIvjBUi8/RS0w==" crossorigin="anonymous" />
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+            
+        <!-- Main CSS -->
+        <link rel="stylesheet" type="text/css" href="assets/css/layout.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     </head>
-    <style>
-        .mul-select{
-            width: 100%;
-        }
-    </style>
-    <script>
-        $(document).ready(function(){
-            $(".mul-select").select2({
-                    placeholder: "select skills",
-                    tags: true,
-                    tokenSeparators: ['/',',',';'," "] 
-                });
-            })
-    </script>
-    <iframe name="hiddenFrame" width="0" height="0" style="display: none;"></iframe>
-    <div class="row justify-content-center align-items-center h-100">
-        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-            <div class="form-group">
-                <form id="myForm" name="myForm" target="hiddenFrame">
-                    <select class="mul-select" id="skills" name="skills" multiple="true">
-                        <option value="PYTHON">PYTHON</option>
-                        <option value="JAVA">JAVA</option>
-                        <option value="TENSORFLOW">TENSORFLOW</option>
-                    </select>
-                    <input id = "update" type="submit" value="Submit">
-            </form> 
-        </div> 
-   </div>
-</div>
-    
-    <canvas id="myChart" style="max-width: 750px;" ></canvas>
-    <script>
-        var myChart;
-        var ctx = document.getElementById("myChart").getContext('2d');
-        //get json data from get_json()
-        var getData = $.get('/get_json');
+    <body>
+        <div id="particles-js" class="background" >
+            <div class="sidebar">
+            <li>
+                <ul><a href="templates/index.html"><div class="icon icon-home"><img src="assets/imgs/home.svg" alt="Home"><p>Home</p></div></a></ul>
+                <br>
+                <ul><a href="assets/skills.html"><div class="icon icon-skills"><img src="assets/imgs/nodes.svg" alt="Skills"><p>Skills</p></div></a></ul>
+                <ul><a href="assets/skills.html"><div class="icon icon-domains"><img src="assets/imgs/briefcase.svg" alt="Domains"><p>Domains</p></div></a></ul>
+            </li>
+            </div>
+            <div id="fullpage">
+                <div class="section s1">
+                    <div class="sidebar-shift">
+                        <h1 class="text-center">Upskill</h1>
+                        <p class="landing" id="subheader">Recommending you the best skills</p>
+                        <a href="#secondPage" data-menuanchor="secondPage" class="content"><div class="scroll-down"><img src="assets/imgs/down-arrow.svg"></div></a>
+                    </div>
+                </div>
+                <div class="section s2">
+                    <div class="sidebar-shift">
+                        <a href="#firstPage" data-menuanchor="secondPage" class="content"><div class="scroll-up"><img src="assets/imgs/top-arrow.svg"></div></a>
+                        <h2 class="text-center">About</h2>
+                        <p class="landing">Upskill is an application that enables job seekers to better understand what skills employers are looking for in their associated industry using historical and real-time data on job postings.  Our tool utilises a recommendation system to suggest skills for users who are interested in expanding their current skillset and potentially pick up complementing skills that are sought out by employers.</p>
+                        <a href="#thirdPage" data-menuanchor="secondPage" class="content"><div class="scroll-down"><img src="assets/imgs/down-arrow.svg"></div></a>
+                    </div>
+                </div>
+                <div class="section s3">
+                    <div class="sidebar-shift">
+                        <a href="#secondPage" data-menuanchor="secondPage"><div class="scroll-up content"><img src="assets/imgs/top-arrow.svg"></div></a>
+                        <h2 class="text-center">Get Started</h2>
+                        <div class="container landing">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="skills.html" class="selector">Skills</a>
+                                    <p>Some text here about what the skills page is used for and how it can be useful.</p>
+                                </div>
+                                <div class="col">
+                                    <a href="domains.html" class="selector">Domains</a>
+                                    <p>Some text here about the domains page and what to do there.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+        </div>
 
-        getData.done(function(results){
-            myChart = new Chart(ctx, {
-            type: 'horizontalBar',
-            data: {
-                labels: results.labels,
-                datasets: [{
-                    data: results.data,
-                    backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)',
-                        'rgba(0, 0, 255, 0.5)', 'rgba(0, 51, 102, 0.5)', 'rgba(255, 128, 0, 0.5)', 'rgba(255, 102, 178, 0.5)', 'rgba(178, 255, 102, 0.5)'],
-                    borderColor: ['rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)',
-                        'rgba(0, 0, 255, 1)','rgba(0, 51, 102, 1)','rgba(255, 128, 0, 1)','rgba(255, 102, 178, 1)','rgba(178, 255, 102, 1)'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                title: {
-                    display: true,
-                    text: 'Top 10 recommended skills based on your current skill set'},
-                scales: {xAxes: [{ ticks: {max: 1, min: 0}}]}
-            }});
-        })
+        <!-- Particles JS -->
+        <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+        <!-- Full Page -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.0.9/fullpage.min.js" integrity="sha512-Gx/C4x1qubng2MWpJIxTPuWch9O88dhFFfpIl3WlqH0jPHtCiNdYsmJBFX0q5gIzFHmwkPzzYTlZC/Q7zgbwCw==" crossorigin="anonymous"></script>
 
-        function updateChart(){
-            $.ajax({
-                type: "POST",
-                url: "/get_json",
-                data: $("#myForm").serialize(),
-                success: function(data)
-                {
-                    myChart.data.labels = data.labels;
-                    myChart.data.datasets[0].data = data.data;
-                    myChart.update();
-                }
+        <script>
+            new fullpage('#fullpage', {
+                licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
+                anchors: ['firstPage', 'secondPage', 'thirdPage'],
+                navigation: true,
+                navigationTooltips: ['Home', 'About', 'Get Started'],
             });
-        };
 
-        $('#update').on('click', updateChart);
+            particlesJS.load('particles-js', 'assets/particles.json', function() {
+                console.log('callback - particles.js config loaded');
+            });
+        </script>
 
-    </script>
     </body>
-
-</html>
+</html> 

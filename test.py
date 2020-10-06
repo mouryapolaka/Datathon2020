@@ -4,14 +4,14 @@ from random import sample
 
 skill_corr_df = pd.read_csv('data/corr_matrix.csv', index_col = 'skill_name')
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path = "/assets", static_folder = "assets")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
-@app.route('/get_json', methods=['GET','POST'])
-def get_json():
+@app.route('/get_skill_recommendations', methods=['GET','POST'])
+def get_skill_recommendations():
 
     if request.method == 'POST':
         skills = request.form.getlist('skills')
