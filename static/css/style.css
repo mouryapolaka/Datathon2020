@@ -163,10 +163,15 @@ span {
 
   
   /* DASHBOARD TRANSFORMATIONS */
+.dashboard {
+    background-color: rgba(245, 245, 245, 0.85);
+    border-radius: 10px;
+}
 canvas {
     width: 80%;
 }
 
 .card {
     background-color: #f9f9f9 !important;
+    border-radius: 12px;
 }
