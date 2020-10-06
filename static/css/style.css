@@ -149,9 +149,9 @@ p {
     font-style: italic;
 }
 
-span {
+/* span {
     background: var(--text-color) !important;
-}
+} */
 
 
 /* SKILLS/DOMAIN PAGES */
@@ -174,4 +174,17 @@ canvas {
 .card {
     background-color: #f9f9f9 !important;
     border-radius: 12px;
+}
+
+.card > * {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card-title {
+    font-weight: 500 !important;
+    margin-left: 12px;
+}
+
+form {
+    color: #f9f9f9 !important;
 }
