@@ -22,7 +22,23 @@
         <!-- Main CSS -->
         <link rel="stylesheet" type="text/css" href="css/layout.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+
+       
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+            
     </head>
+    <script>
+        $(document).ready(function(){
+            $(".mul-select").select2({
+                    placeholder: "select skills",
+                    tags: true,
+                    tokenSeparators: ['/',',',';'," "] 
+                });
+            })
+    </script>
     <body>
         <div id="particles-js" class="background">
             <div class="sidebar">
@@ -36,8 +52,22 @@
             <div class="content">
                 <div class="prompt">
                     <p id="skills-prompt">What skills do you currently have?</p>
-                    <input type="text" class="form-control" placeholder="Enter a skill">
-                    <button id="submit-button" class="btn btn-primary mb-2">Submit</button>
+                    <!-- <input type="text" class="form-control" placeholder="Enter a skill">
+                    <button id="submit-button" class="btn btn-primary mb-2">Submit</button> -->
+
+                    <div class="row justify-content-center align-items-center h-100">
+                        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
+                            <div class="form-group">
+                                <form id="myForm" name="myForm" target="hiddenFrame">
+                                    <select class="mul-select" id="skills" name="skills" multiple="true">
+                                        <option value="PYTHON">PYTHON</option>
+                                        <option value="JAVA">JAVA</option>
+                                        <option value="TENSORFLOW">TENSORFLOW</option>
+                                    </select>
+                                    <input id = "update" type="submit" value="Submit">
+                            </form> 
+                        </div> 
+                   </div>
                 </div>
             </div>
         </div>
@@ -61,5 +91,6 @@
             });
         </script>
         <script src="js/skills.js"></script>
+        
     </body>
 </html>
