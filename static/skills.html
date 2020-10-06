@@ -92,9 +92,13 @@
                           </div>
                           <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title">Special title treatment</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                              <h5 class="card-title">Role Skill</h5>
+                              <form id="role_skill_form" name="role_skill_form" target="hiddenFrame">
+                                    <input type="text" id = "role" name="role">
+                                    <input id = "update_role_skill" type="submit" value="Submit">
+                                </form>
+                            
+                                <canvas id="role_skills_chart" style="max-width: 1000px;" ></canvas>
                             </div>
                           </div>
                         </div>
@@ -109,13 +113,17 @@
                                     <input type="text" id = "category" name="category"><br>
                                     <input id = "update_jobtype" type="submit" value="Submit">
                                 </form>
+                                <canvas id="jobtype_chart" style="max-width: 750px;" ></canvas>
                             </div>
                           </div>
                           <div class="card">
                             <div class="card-body">
-                              <h5 class="card-title">Special title treatment</h5>
-                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                              <h5 class="card-title">Location</h5>
+                              <form id="location_form" name="location_form" target="hiddenFrame">
+                                <input type="text" id = "location" name="location">
+                                <input id = "update_location_jobmarket" type="submit" value="Submit">
+                            </form>
+                            <canvas id="location_category_chart" style="max-width: 1000px;" ></canvas>
                             </div>
                           </div>
                         </div>
