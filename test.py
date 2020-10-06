@@ -90,13 +90,29 @@ def get_job_type():
 
 @app.route('/get_skills', methods=['GET'])
 def get_skills():
-    print('Hello world')
     filename = "data/skills.txt"    
     output = []
     with open(filename, 'r', encoding="utf") as file:
         for line in file:
             output.append(line.strip())
-    print('Hellooooo')
+    return jsonify({'data': output})
+
+@app.route('/get_roles', methods=['GET'])
+def get_roles():
+    df = pd.read_csv('data/roles.csv')
+    output = df['0'].tolist()
+    return jsonify({'data': output})
+
+@app.route('/get_locations', methods=['GET'])
+def get_locations():
+    df = pd.read_csv('data/cities.csv')
+    output = df['0'].tolist()
+    return jsonify({'data': output})
+
+@app.route('/get_categories', methods=['GET'])
+def get_categories():
+    df = pd.read_csv('data/categories.csv')
+    output = df['0'].tolist()
     return jsonify({'data': output})
     
 
