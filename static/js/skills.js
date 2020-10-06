@@ -1,7 +1,7 @@
 var rowNum = 0;
 
 // TODO: Modify to listen for valid tags in input field
-var button = document.getElementById('submit-button').addEventListener('click', createDashboard);
+var button = document.getElementById('update').addEventListener('click', createDashboard);
 
 function createDashboard() {
     var dash = document.getElementsByClassName("dashboard");
@@ -66,11 +66,63 @@ function createDashCard(bootstrapSize) {
     p.appendChild(document.createTextNode(text));
 
     // TODO: Add Visualisation
+    var canvas = document.createElement('canvas');
+    canvas.id = "tester-chart";
+    createChart();
 
     body.appendChild(h5);
     body.appendChild(p);
+    body.appendChild(canvas);
     card.appendChild(body);
     div.appendChild(card);
 
     return div;
 }
+
+
+
+function createChart() {
+    var myChart;
+    var ctx = document.getElementById("tester-chart").getContext('2d');
+    //get json data from get_json()
+    var getData = $.get('/get_json');
+
+    getData.done(function(results){
+        myChart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: results.labels,
+            datasets: [{
+                data: results.data,
+                backgroundColor: ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(75, 192, 192, 0.5)', 'rgba(153, 102, 255, 0.5)',
+                    'rgba(0, 0, 255, 0.5)', 'rgba(0, 51, 102, 0.5)', 'rgba(255, 128, 0, 0.5)', 'rgba(255, 102, 178, 0.5)', 'rgba(178, 255, 102, 0.5)'],
+                borderColor: ['rgba(255,99,132,1)','rgba(54, 162, 235, 1)','rgba(255, 206, 86, 1)','rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)',
+                    'rgba(0, 0, 255, 1)','rgba(0, 51, 102, 1)','rgba(255, 128, 0, 1)','rgba(255, 102, 178, 1)','rgba(178, 255, 102, 1)'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            title: {
+                display: true,
+                text: 'Top 10 recommended skills based on your current skill set'},
+            scales: {xAxes: [{ ticks: {max: 1, min: 0}}]}
+        }});
+    })
+}
+
+
+function updateChart(myChart){
+    $.ajax({
+        type: "POST",
+        url: "/get_json",
+        data: $("#myForm").serialize(),
+        success: function(data)
+        {
+            myChart.data.labels = data.labels;
+            myChart.data.datasets[0].data = data.data;
+            myChart.update();
+        }
+    });
+};
+
+$('#update').on('click', updateChart);

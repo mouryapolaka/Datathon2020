@@ -199,4 +199,6 @@ input[type=submit] {
 
   
   /* DASHBOARD TRANSFORMATIONS */
-  
+canvas {
+    width: 80%;
+}
