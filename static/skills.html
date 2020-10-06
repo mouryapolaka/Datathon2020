@@ -43,16 +43,30 @@
                 createJobType();
                 createCategoryChart();
                 $(".mul-select").select2({
-                    placeholder: "select skills",
                     tags: true,
                     tokenSeparators: ['/',',',';'," "],
                 });
 
                 $(".single-select").select2({
-                    placeholder: "select skills",
                     tags: true,
                     tokenSeparators: ['/',',',';'," "],
                     maximumSelectionLength: 1,
+                });
+
+                $(".skillsForm").select2({
+                    placeholder: "Select Skills"
+                });
+
+                $(".rolesForm").select2({
+                    placeholder: "Select Role"
+                });
+
+                $(".locationsForm").select2({
+                    placeholder: "Select City"
+                });
+
+                $(".categoriesForm").select2({
+                    placeholder: "Select Category"
                 });
                 });
 
@@ -132,7 +146,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Skills Recommendation</h5>
                                 <form id="skillsRecommendationForm" name="myForm" target="hiddenFrame">
-                                    <select class="mul-select" id="skills" name="skills" multiple="true">
+                                    <select class="mul-select skillsForm" id="skills" name="skills" multiple="true">
                                     </select>
                                     <input id = "submit-button" type="button" value="Submit">
                             </form> 
@@ -144,7 +158,7 @@
                             <div class="card-body">
                               <h5 class="card-title">Role Skill</h5>
                               <form id="role_skill_form" name="role_skill_form" target="hiddenFrame">
-                                    <select class="single-select" id="role" name="role" multiple="false">
+                                    <select class="single-select rolesForm" id="role" name="role" multiple="false">
                                     </select>
                                     <input id = "update_role_skill" type="button" value="Submit">
                                 </form>
@@ -159,10 +173,10 @@
                                 <h5 class="card-title">Job type</h5>
                                 <form id="jobtype_form" name="jobtype_form" target="hiddenFrame">
                                     <label>Location</label>
-                                    <select class="single-select" id="job_location" name="location" multiple="false">
+                                    <select class="single-select locationsForm" id="job_location" name="location" multiple="false">
                                     </select><br>
                                     <label>Category</label>
-                                    <select class="single-select" id="category" name="category" multiple="false">
+                                    <select class="single-select categoriesForm" id="category" name="category" multiple="false">
                                     </select><br>
                                     <input id = "update_job_type" type="button" value="Submit">
                                 </form>
@@ -173,7 +187,7 @@
                             <div class="card-body">
                               <h5 class="card-title">Location</h5>
                               <form id="location_form" name="location_form" target="hiddenFrame">
-                                <select class="single-select" id="location" name="location" multiple="false">
+                                <select class="single-select locationsForm" id="location" name="location" multiple="false">
                                 </select>
                                 <input id = "update_location_jobmarket" type="button" value="Submit">
                             </form>
