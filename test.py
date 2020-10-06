@@ -12,10 +12,14 @@ def index():
 
 @app.route('/get_json', methods=['GET','POST'])
 def get_json():
+
     if request.method == 'POST':
         skills = request.form.getlist('skills')
+        print(skills)
     else:
-        skills = ['PYTHON', 'JAVA', 'TENSORFLOW']
+        skills = ['PYTHON','AWS']
+
+    print(skills)
 
     df = pd.DataFrame({'Skills' : list(skill_corr_df.keys())})
 
@@ -32,9 +36,10 @@ def get_json():
 
     corr_values_labels = list(df['Skills'][:10])
     corr_values = list(df['Correlation'][:10])
+    print(corr_values_labels)
 
-    #return jsonify({'labels': corr_values_labels, 'data': sample(range(1,11),10)})
-    return jsonify({'labels': corr_values_labels, 'data': corr_values})
+    return jsonify({'labels': corr_values_labels, 'data': sample(range(1,11),10)})
+    #return jsonify({'labels': corr_values_labels, 'data': corr_values})
 
 if __name__ == '__main__':
     app.run(debug=True)
