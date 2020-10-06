@@ -53,6 +53,11 @@
 }
 
 .single-select {
+    margin-bottom: 20px;
+    width: 75%;
+}
+
+#role {
     width: 80%;
 }
 
