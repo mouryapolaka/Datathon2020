@@ -41,7 +41,7 @@ def get_skills():
     print('Hello world')
     filename = "data/skills.txt"    
     output = []
-    with open(filename, 'r') as file:
+    with open(filename, 'r', encoding="utf8") as file:
         for line in file:
             output.append(line)
     print('Hellooooo')
