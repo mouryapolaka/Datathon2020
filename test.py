@@ -3,12 +3,15 @@ import pandas as pd
 from random import sample
 
 skill_corr_df = pd.read_csv('data/corr_matrix.csv', index_col = 'skill_name')
+roles_skills_df = pd.read_csv('data/roles_skills.csv')
+seek_df = pd.read_csv('data/seek_df.csv')
+seek_df = seek_df[seek_df.geo != 'NZ']
 
 app = Flask(__name__, static_url_path = "/assets", static_folder = "assets")
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
+    return render_template('test.html')
 
 @app.route('/get_skill_recommendations', methods=['GET','POST'])
 def get_skill_recommendations():
@@ -36,6 +39,55 @@ def get_skill_recommendations():
 
     # return jsonify({'labels': corr_values_labels, 'data': sample(range(1,11),10)})
     return jsonify({'labels': corr_values_labels, 'data': corr_values})
+
+@app.route('/role_skills', methods=['GET','POST'])
+def get_role_skills():
+    if request.method == 'POST':
+        role = request.form['role']
+    else:
+        role = "Computer Programmers"
+
+    temp_df = roles_skills_df[roles_skills_df['Title'] == role].sort_values('Data Value', axis=0, ascending=False, inplace=False, kind='quicksort')
+
+    df = pd.DataFrame({'Skill' : [], 'Rating' : []})
+    df['Skill'] = [skill.capitalize() for skill in list(temp_df['Element Name'])]
+    df['Rating'] = [rating for rating in list(temp_df['Data Value'])]
+
+    skills = list(df['Skill'][:20])
+    ratings = list(df['Rating'][:20])
+
+    return jsonify({'skills': skills, 'ratings': ratings, 'role': role})
+
+@app.route('/location_category', methods=['GET','POST'])
+def get_location_category():
+    if request.method == 'POST':
+        location = request.form['location']
+    else:
+        location = "Brisbane"
+
+
+    category_list = list(seek_df[seek_df['city'] == location].category.unique())
+    category_frequency = list(seek_df[seek_df['city'] == location].category.value_counts())
+    
+    return jsonify({'categories': category_list[:20], 'frequency': category_frequency[:20], 'location': location})
+
+
+@app.route('/job_type', methods=['GET','POST'])
+def get_job_type():
+    if request.method == 'POST':
+        location = request.form['location']
+        category = request.form['category']
+    else:
+        location = "Brisbane"
+        category = "Accounting"
+    
+    print(location)
+    print(category)
+    df = seek_df.loc[(seek_df['city'] == location) & (seek_df['category'] == category)]
+    job_type = ['Full Time', 'Contract/Temp', 'Part Time', 'Casual/Vacation']
+    freq = list(df.job_type.value_counts())
+
+    return jsonify({'job_type': job_type, 'frequency': freq})
 
 if __name__ == '__main__':
     app.run(debug=True)
