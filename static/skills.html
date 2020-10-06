@@ -43,15 +43,23 @@
                 createJobType();
                 createCategoryChart();
                 $(".mul-select").select2({
-                        placeholder: "select skills",
-                        tags: true,
-                        tokenSeparators: ['/',',',';'," "] 
-                    });
-                })
+                    placeholder: "select skills",
+                    tags: true,
+                    tokenSeparators: ['/',',',';'," "],
+                });
+
+                $(".single-select").select2({
+                    placeholder: "select skills",
+                    tags: true,
+                    tokenSeparators: ['/',',',';'," "],
+                    maximumSelectionLength: 1,
+                });
+                });
+
+               
 
                 var getSkills = $.get('/get_skills');
                 getSkills.done(function(output) {
-                    console.log(output.data);
                     var select = document.getElementById('skills');
                     for (var i = 0; i < output.data.length; i++) {
                         var out = document.createElement('option');
@@ -59,8 +67,49 @@
                         out.setAttribute('value', output.data[i]);
                         $('#skills').append(out);
                     }
-                    console.log(select);
                 });
+
+                var getRoles = $.get('/get_roles');
+                getRoles.done(function(output) {
+                    var select = document.getElementById('role');
+                    console.log(select)
+                    for (var i = 0; i < output.data.length; i++) {
+                        var out = document.createElement('option');
+                        out.appendChild(document.createTextNode(output.data[i]));
+                        out.setAttribute('value', output.data[i]);
+                        $('#role').append(out);
+                    }
+                });
+
+                var getCategories = $.get('/get_categories');
+                getCategories.done(function(output) {
+                    var select = document.getElementById('category');
+                    for (var i = 0; i < output.data.length; i++) {
+                        var out = document.createElement('option');
+                        out.appendChild(document.createTextNode(output.data[i]));
+                        out.setAttribute('value', output.data[i]);
+                        $('#category').append(out);
+                    }
+                });
+
+                var getLocations = $.get('/get_locations');
+                getLocations.done(function(output) {
+                    var select = document.getElementById('location');
+                    for (var i = 0; i < output.data.length; i++) {
+                        var out = document.createElement('option');
+                        out.appendChild(document.createTextNode(output.data[i]));
+                        out.setAttribute('value', output.data[i]);
+                        $('#location').append(out);
+                    }
+
+                    var select = document.getElementById('job_location');
+                    for (var i = 0; i < output.data.length; i++) {
+                        var out = document.createElement('option');
+                        out.appendChild(document.createTextNode(output.data[i]));
+                        out.setAttribute('value', output.data[i]);
+                        $('#job_location').append(out);
+                    }
+                })
         </script>
     </head>
 
@@ -95,7 +144,8 @@
                             <div class="card-body">
                               <h5 class="card-title">Role Skill</h5>
                               <form id="role_skill_form" name="role_skill_form" target="hiddenFrame">
-                                    <input type="text" id = "role" name="role">
+                                    <select class="single-select" id="role" name="role" multiple="false">
+                                    </select>
                                     <input id = "update_role_skill" type="button" value="Submit">
                                 </form>
                             
@@ -109,9 +159,11 @@
                                 <h5 class="card-title">Job type</h5>
                                 <form id="jobtype_form" name="jobtype_form" target="hiddenFrame">
                                     <label>Location</label>
-                                    <input type="text" id = "location" name="location"><br>
+                                    <select class="single-select" id="job_location" name="role" multiple="false">
+                                    </select><br>
                                     <label>Category</label>
-                                    <input type="text" id = "category" name="category"><br>
+                                    <select class="single-select" id="category" name="role" multiple="false">
+                                    </select><br>
                                     <input id = "update_job_type" type="button" value="Submit">
                                 </form>
                                 <canvas id="jobtype_chart" style="max-width: 750px;" ></canvas>
@@ -121,7 +173,8 @@
                             <div class="card-body">
                               <h5 class="card-title">Location</h5>
                               <form id="location_form" name="location_form" target="hiddenFrame">
-                                <input type="text" id = "location" name="location">
+                                <select class="single-select" id="location" name="location" multiple="false">
+                                </select>
                                 <input id = "update_location_jobmarket" type="button" value="Submit">
                             </form>
                             <canvas id="location_category_chart" style="max-width: 1000px;" ></canvas>

@@ -51,6 +51,10 @@
     height: 80px;
 }
 
+.single-select {
+    width: 80%;
+}
+
 .dashboard {
     /* border: 2px solid yellow; */
     width: 97%;
