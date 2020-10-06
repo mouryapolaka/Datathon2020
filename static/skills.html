@@ -23,22 +23,34 @@
         <link rel="stylesheet" type="text/css" href="css/layout.css">
         <link rel="stylesheet" type="text/css" href="css/style.css">
 
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+        
+
        
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
-            
+        
+        <script>
+            $(document).ready(function(){
+                $(".mul-select").select2({
+                        placeholder: "select skills",
+                        tags: true,
+                        tokenSeparators: ['/',',',';'," "] 
+                    });
+                })
+        </script>
     </head>
-    <script>
-        $(document).ready(function(){
-            $(".mul-select").select2({
-                    placeholder: "select skills",
-                    tags: true,
-                    tokenSeparators: ['/',',',';'," "] 
-                });
-            })
-    </script>
+
     <body>
         <div id="particles-js" class="background">
             <div class="sidebar">
@@ -64,7 +76,8 @@
                                         <option value="JAVA">JAVA</option>
                                         <option value="TENSORFLOW">TENSORFLOW</option>
                                     </select>
-                                    <input id = "update" type="submit" value="Submit">
+                                    <button id="submit-button" class="btn btn-primary mb-2">Submit</button>
+                                    <!-- <button id="update" type="submit" value="Submit"> -->
                             </form> 
                         </div> 
                    </div>
@@ -72,14 +85,6 @@
             </div>
         </div>
         
-        <!-- JQuery -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
 
 
         <!-- Particles JS -->
@@ -90,6 +95,7 @@
                 console.log('callback - particles.js config loaded');
             });
         </script>
+
         <script src="js/skills.js"></script>
         
     </body>

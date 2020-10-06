@@ -1,7 +1,7 @@
 var rowNum = 0;
 
 // TODO: Modify to listen for valid tags in input field
-var button = document.getElementById('update').addEventListener('click', createDashboard);
+var button = document.getElementById('submit-button').addEventListener('click', createDashboard);
 
 function createDashboard() {
     var dash = document.getElementsByClassName("dashboard");
@@ -125,4 +125,4 @@ function updateChart(myChart){
     });
 };
 
-$('#update').on('click', updateChart);
+$('#submit-button').on('click', updateChart);
