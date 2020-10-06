@@ -73,16 +73,17 @@ def get_location_category():
 
 @app.route('/job_type', methods=['GET','POST'])
 def get_job_type():
+    print(request.form)
     if request.method == 'POST':
-        location = request.form['location']
-        category = request.form['category']
+        location = request.form.getlist('location')
+        category = request.form.getlist('category')
     else:
         location = "Brisbane"
         category = "Accounting"
     
     print(location)
     print(category)
-    df = seek_df.loc[(seek_df['city'] == location) & (seek_df['category'] == category)]
+    df = seek_df.loc[(seek_df['city'] == location[0]) & (seek_df['category'] == category[0])]
     job_type = ['Full Time', 'Contract/Temp', 'Part Time', 'Casual/Vacation']
     freq = list(df.job_type.value_counts())
 
