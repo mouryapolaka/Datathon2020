@@ -45,7 +45,7 @@
     <div class="row justify-content-center align-items-center h-100">
         <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
             <div class="form-group">
-                <form action="/get_json" method="POST" name="myForm" target="hiddenFrame">
+                <form id="myForm" name="myForm" target="hiddenFrame">
                     <select class="mul-select" id="skills" name="skills" multiple="true">
                         <option value="PYTHON">PYTHON</option>
                         <option value="JAVA">JAVA</option>
@@ -56,7 +56,6 @@
         </div> 
    </div>
 </div>
-    </form>
     
     <canvas id="myChart" style="max-width: 750px;" ></canvas>
     <script>
@@ -88,14 +87,17 @@
         })
 
         function updateChart(){
-            var updatedData = $.get('/get_json')
-            
-            updatedData.done(function(results){
-                myChart.data.labels = results.labels;
-                myChart.data.datasets[0].data = results.data;
-                myChart.update();
-            }
-            );
+            $.ajax({
+                type: "POST",
+                url: "/get_json",
+                data: $("#myForm").serialize(),
+                success: function(data)
+                {
+                    myChart.data.labels = data.labels;
+                    myChart.data.datasets[0].data = data.data;
+                    myChart.update();
+                }
+            });
         };
 
         $('#update').on('click', updateChart);
