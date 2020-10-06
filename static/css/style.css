@@ -1,11 +1,23 @@
+:root {
+    --main-bg-color: #eeeeee;
+    --text-color: #212121;
+    --accent-med-color: #6fddc5;
+    --accent-bright-color: #01d9c9;
+    --accent-dim-color: #347176;
+
+    /* // "value": ["#33cccb", "#193053","#193053", "#ff0165","#e095c7"] */
+
+    --filter-text: invert(9%) sepia(3%) saturate(254%) hue-rotate(314deg) brightness(95%) contrast(89%);
+}
+
 .background {
-    background-color: #212121;
+    background-color: var(--main-bg-color);
 }
 
 .sidebar {
     border-radius: 10px;
-    background-image: linear-gradient(#33cccb, #33cccb, #193053);
-    box-shadow: 2px 5px 20px#181818;
+    background-color: rgb(245,245,245,0.8);
+    box-shadow: 1px 4px 20px#888888;
 }
 
 .sidebar > li {
@@ -18,7 +30,7 @@
     font-weight: 500;
     font-size: 9px;
     text-align: center;
-    color: #e4e4e4;
+    color:var(--text-color);
 }
 
 .icon > img {
@@ -28,21 +40,21 @@
     display: block;
     width: 32px;
     color: white;
-    filter: invert(100%) sepia(1%) saturate(716%) hue-rotate(330deg) brightness(113%) contrast(79%);
+    filter: var(--filter-text);
 }
 
-#sidebar > a:hover, a:focus{
+/* #sidebar > a:hover, a:focus{
     filter: invert(64%) sepia(66%) saturate(465%) hue-rotate(131deg) brightness(96%) contrast(82%);
     color: #33cccb;
     text-decoration: none;
-}
+} */
 
 #fullpage {
     position: absolute !important;
 }
 
 .s2, .s3 {
-    background-color: rgba(18,18,18,0.7);
+    background-color: rgba(220,220,220,0.7);
 }
 
 .landing {
@@ -81,7 +93,7 @@
 	pointer-events: auto;
 }
 
-/* a.selector {
+a.selector {
     font-size: 21px;
     font-weight: 500;
     color: white;
@@ -97,7 +109,7 @@
 
 a.selector:hover, a.selector:active {
     color: #193053;
-} */
+}
 
  /* Modifies Text */
 h1, h2, h3 {
@@ -107,28 +119,29 @@ h1, h2, h3 {
 h1 {
     font-size: 96px;
     font-weight:600;
-    color: #f7f7f7;
+    color: var(--text-color);
     padding: 25px 0px 25px 0px;
 }
 
 h2 {
     font-size: 56px;
-    font-weight: 300;
-    color: #f7f7f7;
+    font-weight: 700;
+    color: var(--accent-dim-color);
     padding: 25px 0px 25px 0px;
+    background-color: rgb(238,238,238,0.7)
 }
 
 h3 {
     font-size: 36px;
     font-weight: 600;
-    color: #f7f7f7;
+    color: var(--text-color);
 }
 
 p {
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
-    font-weight: 200;
-    color: #f7f7f7;
+    font-weight: 400;
+    color: var(--text-color);
 }
 
 #subheader {
@@ -137,7 +150,7 @@ p {
 }
 
 span {
-    background: #f7f7f7 !important;
+    background: var(--text-color) !important;
 }
 
 
@@ -145,42 +158,15 @@ span {
 
 .prompt > p {
     font-size: 42px;
-    color: white;
-}
-
-
-.autocomplete-items {
-    position: absolute;
-    border: 1px solid #d4d4d4;
-    border-bottom: none;
-    border-top: none;
-    z-index: 99;
-    /*position the autocomplete items to be the same width as the container:*/
-    top: 100%;
-    left: 0;
-    right: 0;
-}
-  
-.autocomplete-items div {
-    padding: 10px;
-    cursor: pointer;
-    background-color: #fff; 
-    border-bottom: 1px solid #d4d4d4; 
-}
-  
-  /*when hovering an item:*/
-.autocomplete-items div:hover {
-    background-color: #e9e9e9; 
-}
-  
-  /*when navigating through the items using the arrow keys:*/
-.autocomplete-active {
-    background-color: DodgerBlue !important; 
-    color: #ffffff; 
+    color: var(--text-color);
 }
 
   
   /* DASHBOARD TRANSFORMATIONS */
 canvas {
     width: 80%;
+}
+
+.card {
+    background-color: #f9f9f9 !important;
 }
