@@ -3,6 +3,8 @@ var myChart2;
 var myChart3;
 var myChart1;
 
+$(".dashboard").fadeTo("slow", 1.0);
+
 document.getElementById('submit-button').addEventListener('click', function() {
     console.log($("#skillsRecommendationForm"));
     if ($("#skillsRecommendationForm").serialize() != "") {
