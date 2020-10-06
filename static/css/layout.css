@@ -11,6 +11,7 @@
 
 .sidebar {
     /* border: 2px solid red; */
+    padding-top: 10px;
     position: absolute;
     z-index: 1;
     width: 70px;
