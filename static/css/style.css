@@ -53,35 +53,35 @@
 
 .scroll-up {
     /*Scroll up Arrow*/
-    
     position: absolute;
     top: 30px;
     text-align: center;
     cursor: pointer;
 
+    display: block;
     margin-left: auto;
-	margin-right: auto;
-	left: 0;
-	right: 0;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 	pointer-events: auto;
 }
 
 .scroll-down {
     /*Scroll down Arrow*/
-    
     position: absolute;
     bottom: 30px;
     text-align: center;
     cursor: pointer;
 
+    display:block;
     margin-left: auto;
-	margin-right: auto;
-	left: 0;
-	right: 0;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 	pointer-events: auto;
 }
 
-a.selector {
+/* a.selector {
     font-size: 21px;
     font-weight: 500;
     color: white;
@@ -97,7 +97,7 @@ a.selector {
 
 a.selector:hover, a.selector:active {
     color: #193053;
-}
+} */
 
  /* Modifies Text */
 h1, h2, h3 {
@@ -148,24 +148,6 @@ span {
     color: white;
 }
 
-input {
-    border: 1px solid transparent;
-    background-color: #f1f1f1;
-    padding: 10px;
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-}
-  
-input[type=text] {
-    background-color: #f1f1f1;
-    width: 100%;
-}
-  
-input[type=submit] {
-    background-color: DodgerBlue;
-    color: #fff;
-    cursor: pointer;
-}
 
 .autocomplete-items {
     position: absolute;
