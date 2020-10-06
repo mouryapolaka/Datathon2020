@@ -1,4 +1,7 @@
 var skillsRecommendation;
+var myChart2;
+var myChart3;
+var myChart1;
 
 document.getElementById('submit-button').addEventListener('click', function() {
     console.log($("#skillsRecommendationForm"));
@@ -47,7 +50,6 @@ function updateSkillsRecommendation() {
 };
 
 function createRoleSkills() {
-    var myChart1;
     var ctx1 = document.getElementById("role_skills_chart").getContext('2d');
     //get json data from get_json()
     var getData = $.get('/role_skills');
@@ -95,8 +97,6 @@ function update_role_skills_chart(){
 
 
 function createJobType() {
-    var myChart3;
-    
     var ctx3 = document.getElementById("jobtype_chart").getContext('2d');
 
     var getData = $.get('/job_type');
@@ -164,7 +164,6 @@ function update_jobtype(){
 
 
 function createCategoryChart() {
-    var myChart2;
     var ctx2 = document.getElementById("location_category_chart").getContext('2d');
     //get json data from get_json()
     var getData = $.get('/location_category');
@@ -211,5 +210,5 @@ function update_category_chart(){
 
 $('#update_role_skill').on('click', update_role_skills_chart);
 $('#update_job_type').on('click', update_jobtype);
-$('#update_location_jobmarket').on('click', update_location_jobmarket);
+$('#update_location_jobmarket').on('click', update_category_chart);
 

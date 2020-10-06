@@ -3,6 +3,9 @@ import pandas as pd
 from random import sample
 
 skill_corr_df = pd.read_csv('data/corr_matrix.csv', index_col = 'skill_name')
+roles_skills_df = pd.read_csv('data/roles_skills.csv')
+seek_df = pd.read_csv('data/seek_df.csv')
+seek_df = seek_df[seek_df.geo != 'NZ']
 
 app = Flask(__name__)
 
@@ -90,9 +93,9 @@ def get_skills():
     print('Hello world')
     filename = "data/skills.txt"    
     output = []
-    with open(filename, 'r', encoding="utf8") as file:
+    with open(filename, 'r', encoding="utf") as file:
         for line in file:
-            output.append(line)
+            output.append(line.strip())
     print('Hellooooo')
     return jsonify({'data': output})
     
