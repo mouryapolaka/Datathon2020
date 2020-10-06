@@ -12,21 +12,22 @@ def index():
 
 @app.route('/get_json', methods=['GET','POST'])
 def get_json():
-    '''
     if request.method == 'POST':
-        skills = request.form['skills']
-    '''
+        skills = request.form.getlist('skills')
+    else:
+        skills = ['PYTHON', 'JAVA', 'TENSORFLOW']
+
     df = pd.DataFrame({'Skills' : list(skill_corr_df.keys())})
 
-    for i in ['PYTHON','JAVA','TENSORFLOW']:
+    for i in skills:
         corr_values = list(skill_corr_df[i])
         df[i] = corr_values
 
-    df["Correlation"] = df[[i for i in ['PYTHON','JAVA','TENSORFLOW']]].sum(axis=1)
+    df["Correlation"] = df[[i for i in skills]].sum(axis=1)
 
     df = df.sort_values(by ='Correlation', ascending=False)
 
-    for i in ['PYTHON','JAVA','TENSORFLOW']:
+    for i in skills:
         df = df[df.Skills != i]
 
     corr_values_labels = list(df['Skills'][:10])
