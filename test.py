@@ -36,5 +36,17 @@ def get_json():
     # return jsonify({'labels': corr_values_labels, 'data': sample(range(1,11),10)})
     return jsonify({'labels': corr_values_labels, 'data': corr_values})
 
+@app.route('/get_skills', methods=['GET'])
+def get_skills():
+    print('Hello world')
+    filename = "data/skills.txt"    
+    output = []
+    with open(filename, 'r') as file:
+        for line in file:
+            output.append(line)
+    print('Hellooooo')
+    return jsonify({'data': output})
+    
+
 if __name__ == '__main__':
     app.run(debug=True)

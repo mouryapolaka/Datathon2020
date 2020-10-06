@@ -4,6 +4,24 @@ var myChart;
 // TODO: Modify to listen for valid tags in input field
 var button = document.getElementById('submit-button').addEventListener('click', createDashboard);
 
+
+$(document).ready(function() {
+    console.log("Ran");
+    var getSkills = $.get('/get_skills');
+    getSkills.done(function(output) {
+        console.log(output.data);
+        var select = document.getElementById('skills');
+        for (var i = 0; i < output.data.length; i++) {
+            var out = document.createElement('option');
+            out.appendChild(document.createTextNode(output.data[i]));
+            out.setAttribute('value', output.data[i]);
+            $('#skills').append(out);
+        }
+        console.log(select);
+    });
+})
+
+
 function createDashboard() {
     if ($("#myForm").serialize() != "") {
         console.log($("#myForm").serialize())
