@@ -38,6 +38,7 @@
         
         <script>
             $(document).ready(function(){
+                createSkillsRecommendation();
                 $(".mul-select").select2({
                         placeholder: "select skills",
                         tags: true,
@@ -58,27 +59,49 @@
             </ul>
             </div>
             <div class="content">
-                <div class="prompt">
-                    <p id="skills-prompt">What skills do you currently have?</p>
-                    <!-- <input type="text" class="form-control" placeholder="Enter a skill">
-                    <button id="submit-button" class="btn btn-primary mb-2">Submit</button> -->
 
-                    <div class="row justify-content-center align-items-center h-100">
-                        <div class="col col-sm-6 col-md-6 col-lg-4 col-xl-3">
-                            <div class="form-group">
-                                <form id="myForm" name="myForm" target="hiddenFrame">
-                                    <select class="mul-select" id="skills" name="skills" multiple="true">
-                                        <option value="PYTHON">PYTHON</option>
-                                        <option value="JAVA">JAVA</option>
-                                        <option value="TENSORFLOW">TENSORFLOW</option>
-                                    </select>
-                                    <input id = "submit-button" type="button" value="Submit">
-                                    <!-- <button id="submit-button" class="btn btn-primary mb-2">Submit</button> -->
-                                    <!-- <button id="update" type="submit" value="Submit"> -->
-                            </form> 
-                        </div> 
-                   </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                      <div class="card">
+                        <div class="card-body">
+                            <form id="skillsRecommendationForm" name="myForm" target="hiddenFrame">
+                                <select class="mul-select" id="skills" name="skills" multiple="true">
+                                    <option value="PYTHON">PYTHON</option>
+                                    <option value="JAVA">JAVA</option>
+                                    <option value="TENSORFLOW">TENSORFLOW</option>
+                                </select>
+                                <input id = "submit-button" type="button" value="Submit">
+                        </form> 
+                        <canvas id="skillsRecommendationChart" style="max-width: 750px;" ></canvas>
+
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Special title treatment</h5>
+                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Special title treatment</h5>
+                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body">
+                          <h5 class="card-title">Special title treatment</h5>
+                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                      </div>
+                    </div>
                 </div>
+            </div>
             </div>
         </div>
         
@@ -93,7 +116,7 @@
             });
         </script>
 
-        <script src="js/skills.js"></script>
+        <script src="js/visualisations.js"></script>
         
     </body>
 </html>
