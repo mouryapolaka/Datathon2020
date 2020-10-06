@@ -2,9 +2,6 @@
     "folders": [
         {
             "path": "."
-        },
-        {
-            "path": "../dashboard-datathon2020"
         }
     ],
     "settings": {
