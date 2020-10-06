@@ -45,6 +45,19 @@
                         tokenSeparators: ['/',',',';'," "] 
                     });
                 })
+
+                var getSkills = $.get('/get_skills');
+                getSkills.done(function(output) {
+                    console.log(output.data);
+                    var select = document.getElementById('skills');
+                    for (var i = 0; i < output.data.length; i++) {
+                        var out = document.createElement('option');
+                        out.appendChild(document.createTextNode(output.data[i]));
+                        out.setAttribute('value', output.data[i]);
+                        $('#skills').append(out);
+                    }
+                    console.log(select);
+                });
         </script>
     </head>
 
@@ -59,48 +72,48 @@
             </ul>
             </div>
             <div class="content">
-
-                <div class="row">
-                    <div class="col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                            <form id="skillsRecommendationForm" name="myForm" target="hiddenFrame">
-                                <select class="mul-select" id="skills" name="skills" multiple="true">
-                                    <option value="PYTHON">PYTHON</option>
-                                    <option value="JAVA">JAVA</option>
-                                    <option value="TENSORFLOW">TENSORFLOW</option>
-                                </select>
-                                <input id = "submit-button" type="button" value="Submit">
-                        </form> 
-                        <canvas id="skillsRecommendationChart" style="max-width: 750px;" ></canvas>
-
+                <div class="dashboard">
+                    <h3>Dashboard</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                                <form id="skillsRecommendationForm" name="myForm" target="hiddenFrame">
+                                    <select class="mul-select" id="skills" name="skills" multiple="true">
+                                    </select>
+                                    <input id = "submit-button" type="button" value="Submit">
+                            </form> 
+                            <canvas id="skillsRecommendationChart" style="max-width: 750px;" ></canvas>
+    
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Special title treatment</h5>
+                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Special title treatment</h5>
-                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Special title treatment</h5>
+                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Special title treatment</h5>
+                              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                              <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Special title treatment</h5>
-                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body">
-                          <h5 class="card-title">Special title treatment</h5>
-                          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                      </div>
                     </div>
                 </div>
+                
             </div>
             </div>
         </div>
