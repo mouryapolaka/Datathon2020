@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Skills</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+        <!-- Bootstrap core CSS -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Material Design Bootstrap -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+        
+        <!-- Main CSS -->
+        <link rel="stylesheet" type="text/css" href="css/layout.css">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+
+        <!-- JQuery -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!-- Bootstrap tooltips -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+        <!-- MDB core JavaScript -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+        
+        <script>
+            $(document).ready(function(){
+                createSkillsRecommendation();
+                createRoleSkills();
+                createJobType();
+                createCategoryChart();
+                $(".mul-select").select2({
+                    tags: true,
+                    tokenSeparators: ['/',',',';'," "],
+                });
+
+                $(".single-select").select2({
+                    tags: true,
+                    tokenSeparators: ['/',',',';'," "],
+                    maximumSelectionLength: 1,
+                });
+
+                $(".skillsForm").select2({
+                    placeholder: "Select Skills"
+                });
+
+                $(".rolesForm").select2({
+                    placeholder: "Select Role"
+                });
+
+                $(".locationsForm").select2({
+                    placeholder: "Select City"
+                });
+
+                $(".categoriesForm").select2({
+                    placeholder: "Select Category"
+                });
+                });
+
+               
+
+                var getSkills = $.get('/get_skills');
+                getSkills.done(function(output) {
+                    var select = document.getElementById('skills');
+                    for (var i = 0; i < output.data.length; i++) {
+                        var out = document.createElement('option');
+                        out.appendChild(document.createTextNode(output.data[i]));
+                        out.setAttribute('value', output.data[i]);
+                        $('#skills').append(out);
+                    }
+                });
+
+                var getRoles = $.get('/get_roles');
+                getRoles.done(function(output) {
+                    var select = document.getElementById('role');
+                    console.log(select)
+                    for (var i = 0; i < output.data.length; i++) {
+                        var out = document.createElement('option');
+                        out.appendChild(document.createTextNode(output.data[i]));
+                        out.setAttribute('value', output.data[i]);
+                        $('#role').append(out);
+                    }
+                });
+
+                var getCategories = $.get('/get_categories');
+                getCategories.done(function(output) {
+                    var select = document.getElementById('category');
+                    for (var i = 0; i < output.data.length; i++) {
+                        var out = document.createElement('option');
+                        out.appendChild(document.createTextNode(output.data[i]));
+                        out.setAttribute('value', output.data[i]);
+                        $('#category').append(out);
+                    }
+                });
+
+                var getLocations = $.get('/get_locations');
+                getLocations.done(function(output) {
+                    var select = document.getElementById('location');
+                    for (var i = 0; i < output.data.length; i++) {
+                        var out = document.createElement('option');
+                        out.appendChild(document.createTextNode(output.data[i]));
+                        out.setAttribute('value', output.data[i]);
+                        $('#location').append(out);
+                    }
+
+                    var select = document.getElementById('job_location');
+                    for (var i = 0; i < output.data.length; i++) {
+                        var out = document.createElement('option');
+                        out.appendChild(document.createTextNode(output.data[i]));
+                        out.setAttribute('value', output.data[i]);
+                        $('#job_location').append(out);
+                    }
+                })
+        </script>
+    </head>
+
+    <body>
+        <div id="particles-js" class="background">
+            <div class="sidebar">
+              <ul>
+                <li><a href=".."><div class="icon icon-home"><img src="assets/imgs/home.svg" alt="Home"><p>Home</p></div></a></li>
+                <br>
+                <li><a href="/static/skills.html"><div class="icon icon-skills"><img src="assets/imgs/nodes.svg" alt="Skills"><p>Skills</p></div></a></li>
+                <!-- <li><a href="/static/domains.html"><div class="icon icon-domains"><img src="assets/imgs/briefcase.svg" alt="Domains"><p>Domains</p></div></a></li> -->
+            </ul>
+            </div>
+            <div class="content">
+                <div class="dashboard" style="opacity:0;">
+                    <h3>Dashboard</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Skills Recommendation</h5>
+                                <p>Enter in the skills you currently have in order to learn about other skills that may be beneficial to learn.</p>
+                                <form id="skillsRecommendationForm" name="myForm" target="hiddenFrame">
+                                    <select class="mul-select skillsForm" id="skills" name="skills" multiple="true"  style="width: 320.625px;">
+                                    </select>
+                                    <input class="btn btn-primary" id = "submit-button" type="button" value="Submit">
+                            </form> 
+                            <canvas id="skillsRecommendationChart" style="max-width: 750px;" ></canvas>
+    
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Most Demanded Skills by Job Position</h5>
+                              <p>Enter in your desired role in order to discover the most in-demand skills by employers.</p>
+                              <form id="role_skill_form" name="role_skill_form" target="hiddenFrame">
+                                    <select class="single-select rolesForm" id="role" name="role" multiple="false">
+                                    </select>
+                                    <input class="btn btn-primary" id = "update_role_skill" type="button" value="Submit">
+                                </form>
+                            
+                                <canvas id="role_skills_chart" style="max-width: 1000px;" ></canvas>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Work Type by Role</h5>
+                                <p>Enter in your desired role and your city in order to find out the most common type of work available.</p>
+                                <form id="jobtype_form" name="jobtype_form" target="hiddenFrame">
+                                    <label>Location</label>
+                                    <select class="single-select locationsForm" id="job_location" name="location" multiple="false">
+                                    </select><br>
+                                    <label>Category</label>
+                                    <select class="single-select categoriesForm" id="category" name="category" multiple="false">
+                                    </select><br>
+                                    <input class="btn btn-primary" id = "update_job_type" type="button" value="Submit">
+                                </form>
+                                <canvas id="jobtype_chart" style="max-width: 750px;" ></canvas>
+                            </div>
+                          </div>
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Job Market Size by Location</h5>
+                              <p>Enter in your location to find out which fields are the largest in your city.</p>
+                              <form id="location_form" name="location_form" target="hiddenFrame">
+                                <select class="single-select locationsForm" id="location" name="location" multiple="false">
+                                </select>
+                                <input class="btn btn-primary" id = "update_location_jobmarket" type="button" value="Submit">
+                            </form>
+                            <canvas id="location_category_chart" style="max-width: 1000px;" ></canvas>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            </div>
+        </div>
+        
+
+
+        <!-- Particles JS -->
+        <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+        <!-- Particle JS Load -->
+        <script>
+            particlesJS.load('particles-js', 'assets/particles-static.json', function() {
+                console.log('callback - particles.js config loaded');
+            });
+        </script>
+
+        <script src="js/visualisations.js"></script>
+        
+    </body>
+</html>

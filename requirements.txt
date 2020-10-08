@@ -1,0 +1,7 @@
+pandas
+gunicorn
+plotly
+dash
+numpy
+dash_bootstrap_components
+Flask

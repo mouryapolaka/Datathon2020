@@ -1,0 +1,247 @@
+:root {
+    --main-bg-color: #eeeeee;
+    --text-color: #212121;
+    --accent-med-color: #6fddc5;
+    --accent-bright-color: #01d9c9;
+    --accent-dim-color: #347176;
+
+    /* // "value": ["#33cccb", "#193053","#193053", "#ff0165","#e095c7"] */
+
+    --filter-text: invert(9%) sepia(3%) saturate(254%) hue-rotate(314deg) brightness(95%) contrast(89%);
+}
+
+.background {
+    background-color: var(--main-bg-color);
+}
+
+.sidebar {
+    border-radius: 10px;
+    background-color: rgb(245,245,245,0.8);
+    box-shadow: 1px 4px 20px#888888;
+}
+
+.sidebar > li {
+    list-style: none;
+    padding: 20px 5px 20px 5px;
+}
+
+.icon > p {
+    font-family: 'Verdana';
+    font-weight: 500;
+    font-size: 9px;
+    text-align: center;
+    color:var(--text-color);
+}
+
+.icon > img {
+    padding: 5px 5px 5px 5px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 32px;
+    filter: var(--filter-text);
+}
+
+/* #sidebar > a:hover, a:focus{
+    filter: invert(64%) sepia(66%) saturate(465%) hue-rotate(131deg) brightness(96%) contrast(82%);
+    color: #33cccb;
+    text-decoration: none;
+} */
+
+#fullpage {
+    position: absolute !important;
+}
+
+.s2, .s3 {
+    background-color: rgba(220,220,220,0.7);
+}
+
+.landing {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+
+.scroll-up {
+    /*Scroll up Arrow*/
+    position: absolute;
+    top: 30px;
+    text-align: center;
+    cursor: pointer;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+	pointer-events: auto;
+}
+
+.scroll-down {
+    /*Scroll down Arrow*/
+    position: absolute;
+    bottom: 30px;
+    text-align: center;
+    cursor: pointer;
+
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+	pointer-events: auto;
+}
+
+ /* Modifies Text */
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-size: 96px;
+    font-weight:600;
+    color: var(--text-color);
+    padding: 25px 0px 25px 0px;
+}
+
+h2 {
+    font-size: 64px;
+    font-weight: 700;
+    color: var(--main-bg-color);
+    padding: 25px 0px 25px 0px;
+    /* background-color:rgb(1,217,201, 0.5); */
+    background-color: rgb(111,221,197,0.8);
+    text-shadow: 0px 0px 30px rgb(100,100,100, 0.5);
+}
+
+h3 {
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+#subheader {
+    font-size: 26px;
+    font-style: italic;
+}
+
+/* span {
+    background: var(--text-color) !important;
+} */
+
+
+/* SKILLS/DOMAIN PAGES */
+
+.prompt > p {
+    font-size: 42px;
+    color: var(--text-color);
+}
+
+  
+  /* DASHBOARD TRANSFORMATIONS */
+.dashboard {
+    background-color: rgba(245, 245, 245, 0.85);
+    border-radius: 10px;
+}
+canvas {
+    width: 80%;
+}
+
+.card {
+    background-color: #f9f9f9 !important;
+    border-radius: 12px;
+}
+
+.card > * {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card-title {
+    font-weight: 500 !important;
+    margin-left: 12px;
+}
+
+.single-select, .mul-select {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.mul-select {
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn-primary {
+    background-color: var(--accent-bright-color) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    padding: 10px 10px 10px 10px;
+}
+
+label {
+    min-width: 5rem;
+}
+
+.getStarted {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 320px;
+    width:70%;
+}
+
+a.selector {
+    font-size: 21px;
+    font-weight: 500;
+    color: var(--accent-dim-color);
+    padding: 15px 0px 15px 0px;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    /* width: 80%; */
+    border: 2px solid var(--accent-dim-color);
+    border-radius: 10px;
+}
+
+a.selector:hover, a.selector:active {
+    color: var(--accent-bright-color);
+    border-color: var(--accent-bright-color);
+    text-decoration: underline;
+}
+
+
+
+.display-center {
+    display:block;
+    margin-right:auto;
+    margin-left: auto;
+}
+
+#s2content {
+    max-width: 960px;
+    width: 90%;
+}
+
+#s2content > * {
+    margin: 15px 15px 15px 15px;
+}
+
+/* #s2p {
+    max-width: 500px;
+    width: 80%;
+} */
+
+#screenshot {
+    margin-top: 20px;
+    max-width: 600px;
+    width: 80%;
+}
